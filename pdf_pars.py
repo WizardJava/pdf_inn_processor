@@ -16,8 +16,10 @@ def extract_text(pdf_path):
 
 def find_inn(text):
     # Ищем все ИНН, но исключаем 1430007786
+    # Ищем все ИНН, но исключаем 1430001231
     inns = re.findall(r'\b\d{10}\b|\b\d{12}\b', text)
     valid_inns = [inn for inn in inns if inn != "для_исключения1430001231"]
+    valid_inns = [inn for inn in inns if inn != "для_исключения_1430001231"]
     return valid_inns[0] if valid_inns else None
 
 def process_file(file_path):
